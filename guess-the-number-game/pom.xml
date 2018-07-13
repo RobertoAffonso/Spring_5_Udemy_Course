@@ -15,6 +15,7 @@
         <logback.version>1.2.3</logback.version>
         <spring.contextversion>5.0.7.RELEASE</spring.contextversion>
         <java.version>9</java.version>
+        <javax.version>1.3.2</javax.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -29,6 +30,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.contextversion}</version>
+            </dependency>
+            <!--JavaX Annotation API -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${javax.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

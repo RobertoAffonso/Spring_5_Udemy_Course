@@ -2,6 +2,11 @@ package academy.learnprogramming;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  * @author Roberto Affonso, created on 7/12/18
@@ -12,6 +17,7 @@ public class GameImpl implements Game {
     public static final Logger log = LoggerFactory.getLogger(GameImpl.class);
 
     // == Fields ==
+    @Autowired
     private NumberGenerator numberGenerator;
     private int guessCount = 10;
     private int number;
@@ -21,7 +27,8 @@ public class GameImpl implements Game {
     private int guess;
     private boolean validNumberRange = true;
 
-    // == Public Methods ==
+    // == Init ==
+    @PostConstruct
     @Override
     public void reset() {
         smallest = 0;
@@ -32,6 +39,12 @@ public class GameImpl implements Game {
         log.debug("Number is {}", number);
     }
 
+    @PreDestroy
+    public void preDestroy(){
+        log.info("in Game preDestroy()");
+    }
+
+    // == Public Methods ==
     @Override
     public int getNumber() {
         return number;
@@ -90,6 +103,10 @@ public class GameImpl implements Game {
     public boolean isGameLost() {
         return !isGameWon() && remainingGuesses <= 0;
     }
+
+//    public void setNumberGenerator(NumberGenerator numberGenerator) {
+//        this.numberGenerator = numberGenerator;
+//    }
 
     // == Private Methods ==
     private void checkValidNumberRange(){
