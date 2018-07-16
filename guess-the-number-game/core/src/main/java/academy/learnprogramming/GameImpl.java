@@ -19,7 +19,10 @@ public class GameImpl implements Game {
     // == Fields ==
     @Autowired
     private NumberGenerator numberGenerator;
-    private int guessCount = 10;
+
+    @Autowired
+    @GuessCount
+    private int guessCount;
     private int number;
     private int smallest;
     private int biggest;
@@ -76,6 +79,11 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public int getGuessCount() {
+        return guessCount;
+    }
+
+    @Override
     public void check() {
         checkValidNumberRange();
         if(validNumberRange){
@@ -83,7 +91,7 @@ public class GameImpl implements Game {
                 biggest = guess - 1;
             }
             if(guess < number){
-                biggest = guess + 1;
+                smallest = guess + 1;
             }
         }
         remainingGuesses--;
@@ -91,7 +99,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean isValidNumberRange() {
-        return false;
+        return validNumberRange;
     }
 
     @Override
@@ -103,10 +111,6 @@ public class GameImpl implements Game {
     public boolean isGameLost() {
         return !isGameWon() && remainingGuesses <= 0;
     }
-
-//    public void setNumberGenerator(NumberGenerator numberGenerator) {
-//        this.numberGenerator = numberGenerator;
-//    }
 
     // == Private Methods ==
     private void checkValidNumberRange(){

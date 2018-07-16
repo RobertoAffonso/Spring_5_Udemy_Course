@@ -2,4 +2,6 @@
 /home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/NumberGeneratorImpl.java
 /home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/GameImpl.java
 /home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/NumberGenerator.java
-/home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/Main.java
+/home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/AppConfig.java
+/home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/MessageGeneratorImpl.java
+/home/robertoaraujo/Documents/guess-the-number-game/core/src/main/java/academy/learnprogramming/MessageGenerator.java
