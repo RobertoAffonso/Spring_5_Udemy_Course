@@ -11,31 +11,42 @@ import javax.annotation.PreDestroy;
 /**
  * @author Roberto Affonso, created on 7/12/18
  **/
+@Component
 public class GameImpl implements Game {
 
     // == Constants ==
     public static final Logger log = LoggerFactory.getLogger(GameImpl.class);
 
     // == Fields ==
-    @Autowired
-    private NumberGenerator numberGenerator;
+    private final NumberGenerator numberGenerator;
 
-    @Autowired
-    @GuessCount
-    private int guessCount;
-    private int number;
+    private final int guessCount;
+
     private int smallest;
+
     private int biggest;
+
+    private int number;
+
     private int remainingGuesses;
+
     private int guess;
+
     private boolean validNumberRange = true;
+
+    // == Constructors ==
+    @Autowired
+    public GameImpl(NumberGenerator numberGenerator, @GuessCount int guessCount) {
+        this.numberGenerator = numberGenerator;
+        this.guessCount = guessCount;
+    }
 
     // == Init ==
     @PostConstruct
     @Override
     public void reset() {
-        smallest = 0;
-        guess = 0;
+        smallest = numberGenerator.getMinNumber();
+        guess = numberGenerator.getMinNumber();
         remainingGuesses = guessCount;
         biggest = numberGenerator.getMaxNumber();
         number = numberGenerator.next();
